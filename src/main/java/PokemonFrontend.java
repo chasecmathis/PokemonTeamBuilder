@@ -75,7 +75,7 @@ public class PokemonFrontend implements IPokemonFrontend {
   @Override public void pokemonInput(int page) {
     // display the current page
     System.out.println(
-        "Showing page " + (page + 1) + " out of " + ((BACKEND.searchPokemon().size() + 1) / 10
+        "Showing page " + (page + 1) + " out of " + ((BACKEND.searchPokemon().size()) / 10
             + 1));
 
     // prints out all pokemon on this page
@@ -94,7 +94,7 @@ public class PokemonFrontend implements IPokemonFrontend {
     // check what their response is
     try {
       // checks if there is a next page
-      if (response.equals("N") && (page != BACKEND.searchPokemon().size() / 10 + 1)) {
+      if (response.equals("N") && (page != BACKEND.searchPokemon().size() / 10)) {
         ++page;
         pokemonInput(page);
       } else if (response.equals("P") && (page > 0)) {
@@ -106,7 +106,7 @@ public class PokemonFrontend implements IPokemonFrontend {
         page = 0;
         displayCommandMenu();
       } else if (Integer.parseInt(response) > page * 10 && Integer.parseInt(response) <= Math.min(
-          BACKEND.searchPokemon().size(), (page + 1) * 10 - 1)) {
+          BACKEND.searchPokemon().size(), (page + 1) * 10)) {
         // if the number provided is within range displayed on current screen, add that pokemon
         // to the current team
         BACKEND.addToTeam(BACKEND.searchPokemon().get(Integer.parseInt(response) - 1));
